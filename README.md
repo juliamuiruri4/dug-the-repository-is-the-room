@@ -6,9 +6,9 @@
 
 This talk explores how developers and coding agents can work in parallel while GitHub keeps intent, evidence, and human decisions visible.
 
-[![Slide 1: The repository is the room](assets/media/slide-1.png)](https://juliamuiruri.github.io/dug-the-repository-is-the-room/)
+[![Slide 1: The repository is the room](assets/media/slide-1.png)](https://juliawakiru.dev/dug-the-repository-is-the-room/)
 
-View the [interactive slides](https://juliamuiruri.github.io/dug-the-repository-is-the-room/) or download the [PDF deck](slides.pdf).
+View the [interactive slides](https://juliawakiru.dev/dug-the-repository-is-the-room/#slide-1) or download the [PDF deck](slides.pdf).
 
 |  |  |
 | --- | --- |
