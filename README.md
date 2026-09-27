@@ -13,3 +13,10 @@ View the [interactive slides](https://juliawakiru.dev/dug-the-repository-is-the-
 |  |  |
 | --- | --- |
 | ![Julia Muiruri presenting The repository is the room at the Dynamics User Group Kenya Meetup](assets/event-pics/dug-event-01-enhanced.jpg) | ![Audience attending the Dynamics User Group Kenya Meetup at Microsoft ADC Nairobi](assets/event-pics/dug-event-02-enhanced.jpg) |
+
+## Resources
+
+1. [Turn one giant AI-generated pull request to a reviewable stack](https://github.blog/engineering/turn-one-giant-ai-generated-pull-request-to-a-reviewable-stack/)
+2. [GitHub Copilot app](https://gh.io/app)
+3. [Integrating Copilot cloud agent with Slack](https://docs.github.com/en/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-slack)
+4. [Integrating Copilot cloud agent with Teams](https://docs.github.com/en/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-teams)
