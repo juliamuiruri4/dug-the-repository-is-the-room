@@ -20,3 +20,4 @@ View the [interactive slides](https://juliawakiru.dev/dug-the-repository-is-the-
 2. [GitHub Copilot app](https://gh.io/app)
 3. [Integrating Copilot cloud agent with Slack](https://docs.github.com/en/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-slack)
 4. [Integrating Copilot cloud agent with Teams](https://docs.github.com/en/copilot/how-tos/copilot-integrations/integrate-cloud-agent-with-teams)
+5. [GitHub Copilot app for Beginners Course](https://gh.io/copilot-app-course)
