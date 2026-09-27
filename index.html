@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An original presentation by Julia Muiruri about parallel development and trustworthy human-agent workflows on GitHub."
+    />
+    <link rel="icon" href="data:," />
+    <title>Modern GitHub: the human + agent future | Julia Muiruri</title>
+    <script>
+      (() => {
+        const param = new URLSearchParams(window.location.search).get("scoutTheme");
+        const theme =
+          param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script>
+      document.documentElement.setAttribute("data-theme", "light");
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --cp-bg: #f7f4ef;
+        --cp-bg-elevated: #fcfbf8;
+        --cp-surface: #ffffff;
+        --cp-surface-soft: #f5f5f5;
+        --cp-border: #dedede;
+        --cp-border-strong: #919191;
+        --cp-text: #242424;
+        --cp-text-muted: #5c5c5c;
+        --cp-text-soft: #6f6f6f;
+        --cp-accent: #b11f4b;
+        --cp-accent-hover: #9a1a41;
+        --cp-accent-soft: rgba(177, 31, 75, 0.08);
+        --cp-accent-fg: #ffffff;
+        --cp-success: #16a34a;
+        --cp-danger: #dc2626;
+        --cp-warning: #f59e0b;
+        --cp-link: #0078d4;
+        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+        --cp-overlay: rgba(255, 255, 255, 0.8);
+        --cp-panel: rgba(255, 255, 255, 0.86);
+        --cp-panel-strong: rgba(255, 255, 255, 0.96);
+        --cp-sheen: rgba(255, 255, 255, 0.55);
+        --cp-highlight: rgba(177, 31, 75, 0.12);
+      }
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --cp-bg: #3d3b3a;
+        --cp-bg-elevated: #343231;
+        --cp-surface: #292929;
+        --cp-surface-soft: #2e2e2e;
+        --cp-border: #474747;
+        --cp-border-strong: #5f5f5f;
+        --cp-text: #dedede;
+        --cp-text-muted: #919191;
+        --cp-text-soft: #b0b0b0;
+        --cp-accent: #fd8ea1;
+        --cp-accent-hover: #fb7b91;
+        --cp-accent-soft: rgba(253, 142, 161, 0.14);
+        --cp-accent-fg: #1a1a1a;
+        --cp-success: #4ade80;
+        --cp-danger: #f87171;
+        --cp-warning: #fbbf24;
+        --cp-link: #4da6ff;
+        --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+        --cp-overlay: rgba(41, 41, 41, 0.88);
+        --cp-panel: rgba(41, 41, 41, 0.72);
+        --cp-panel-strong: rgba(41, 41, 41, 0.96);
+        --cp-sheen: rgba(255, 255, 255, 0.04);
+        --cp-highlight: rgba(253, 142, 161, 0.12);
+      }
+    </style>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./deck.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#deck">Skip controls</a>
+    <div class="app">
+      <header class="chrome">
+        <div class="brand"><img class="brand-logo" src="./assets/media/dynamics-user-group-kenya.png" width="214" height="80" alt="Dynamics User Group Kenya" /></div>
+        <button type="button" class="help-button" id="help-button" aria-haspopup="dialog" aria-controls="help-dialog">
+          <span aria-hidden="true">?</span><span class="sr-only">Keyboard and touch controls</span>
+        </button>
+      </header>
+
+      <main class="deck" id="deck" tabindex="-1" aria-label="Modern GitHub presentation">
+        <section class="slide slide--title" id="slide-1" data-slide="1" data-opening-step="0" aria-label="Slide 1 of 20: The repository is the room">
+          <div class="slide-top"><span>OPENING / 01</span><span>THE HUMAN + AGENT FUTURE</span></div>
+          <div class="title-layout">
+            <div class="title-copy">
+              <span class="tag tag--green">A NEW WAY TO BUILD TOGETHER</span>
+              <h1>The repository<br />is <em>the room.</em></h1>
+              <p>Parallel development with agents needs a <span class="opening-phrase" data-opening-step="1">shared place</span> to <span class="opening-phrase" data-opening-step="2">propose work</span>, <span class="opening-phrase" data-opening-step="3">show evidence</span>, and <span class="opening-phrase" data-opening-step="4">make decisions</span>.</p>
+              <div class="presenter"><span class="presenter-mark" aria-hidden="true">JM</span><span><strong>Julia Muiruri</strong><small>Developer Experiences (DX) at GitHub</small></span></div>
+            </div>
+            <div class="room-art" data-opening-focus="1" aria-label="Diagram: an issue and an agent feed a pull request, with the maintainer guiding the decision">
+              <div class="room-line room-line--one"></div><div class="room-line room-line--two"></div>
+              <div class="room-node room-node--issue"><small>01 / INTENT</small><strong>ISSUE</strong></div>
+              <div class="room-node room-node--agent" data-opening-focus="2"><small>02 / WORK</small><strong>AGENT</strong></div>
+              <div class="room-node room-node--pr" data-opening-focus="3"><small>03 / EVIDENCE</small><strong>PR</strong></div>
+              <div class="room-node room-node--human" data-opening-focus="4"><small>04 / DECISION</small><strong>HUMAN</strong></div>
+              <div class="room-stamp">THE LOOP<br />STAYS VISIBLE</div>
+            </div>
+          </div>
+          <span class="sr-only">Advance four times to highlight the ideas before moving to slide 2.</span>
+          <div class="slide-foot"><span>JULIA MUIRURI / GITHUB</span><span>01 — 20</span></div>
+        </section>
+
+        <section class="slide slide--data" id="slide-2" data-slide="2" aria-label="Slide 2 of 20: GitHub activity monthly averages in 2024 and 2025" hidden>
+          <div class="slide-top"><span>THE PRESSURE / 02</span><span>2024 → 2025 / MONTHLY AVERAGES</span></div>
+          <div class="slide-head"><span class="eyebrow">GITHUB OCTOVERSE 2025</span><h2>More work reaches<br />the review surface.</h2><p>Across three different measures, the monthly average rose year over year.</p></div>
+          <figure class="activity-chart" aria-labelledby="activity-title">
+            <div class="chart-heading" id="activity-title"><strong>MONTHLY AVERAGE</strong><span><i class="key-2024"></i> 2024 <i class="key-2025"></i> 2025</span></div>
+            <div class="activity-row"><div class="activity-label"><strong>PRs merged</strong><small>MILLIONS / MONTH</small></div><div class="activity-pair" aria-hidden="true"><div><span>2024</span><div class="bar-track"><i class="bar-2024" style="width:81.02%"></i></div><b>35M</b></div><div><span>2025</span><div class="bar-track"><i class="bar-2025" style="width:100%"></i></div><b>43.2M</b></div></div></div>
+            <div class="activity-row"><div class="activity-label"><strong>Issues closed</strong><small>MILLIONS / MONTH</small></div><div class="activity-pair" aria-hidden="true"><div><span>2024</span><div class="bar-track"><i class="bar-2024" style="width:80%"></i></div><b>≈3.4M</b></div><div><span>2025</span><div class="bar-track"><i class="bar-2025" style="width:100%"></i></div><b>4.25M</b></div></div></div>
+            <div class="activity-row"><div class="activity-label"><strong>Code pushes</strong><small>MILLIONS / MONTH</small></div><div class="activity-pair" aria-hidden="true"><div><span>2024</span><div class="bar-track"><i class="bar-2024" style="width:79.09%"></i></div><b>65M</b></div><div><span>2025</span><div class="bar-track"><i class="bar-2025" style="width:100%"></i></div><b>82.19M</b></div></div></div>
+            <div class="sr-only"><table><caption>GitHub Octoverse monthly averages, 2024 compared with 2025, in millions per month</caption><thead><tr><th scope="col">Metric</th><th scope="col">2024</th><th scope="col">2025</th></tr></thead><tbody><tr><th scope="row">Pull requests merged</th><td>35 million per month</td><td>43.2 million per month</td></tr><tr><th scope="row">Issues closed</th><td>approximately 3.4 million per month</td><td>4.25 million per month</td></tr><tr><th scope="row">Code pushes</th><td>65 million per month</td><td>82.19 million per month</td></tr></tbody></table></div>
+          </figure>
+          <div class="slide-foot"><span>DATA: <a href="https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/" target="_blank" rel="noopener noreferrer">GITHUB OCTOVERSE 2025 ↗</a></span><span>02 — 20</span></div>
+        </section>
+
+        <section class="slide slide--data" id="slide-3" data-slide="3" aria-label="Slide 3 of 20: Reported 2026 commits and approximate August chart endpoints" hidden>
+          <div class="slide-top"><span>THE PRESSURE / 03</span><span>2026 / MONTHLY SCALE</span></div>
+          <div class="slide-head"><h2>The scale of<br />2026.</h2></div>
+          <figure class="commits-figure" aria-labelledby="commits-title" aria-describedby="commits-note">
+            <div class="commits-plot"><strong id="commits-title">MONTHLY COMMITS / BILLIONS</strong><div class="commit-row"><span>APR 2026</span><div class="commit-track" aria-hidden="true"><i style="width:46.67%"></i></div><b>1.4B</b></div><div class="commit-row"><span>AUG 2026</span><div class="commit-track" aria-hidden="true"><i style="width:96.67%"></i></div><b>2.9B</b></div><div class="commit-axis" aria-hidden="true"><span>0</span><span>1B</span><span>2B</span><span>3B</span></div></div>
+            <aside class="commits-aside" aria-hidden="true"><span>AUG 2026</span><div class="scale-callout"><strong>≈130M</strong><span>PRs merged<br />per month</span></div><div class="scale-callout"><strong>≈24M</strong><span>New repositories<br />per month</span></div></aside>
+            <figcaption id="commits-note">The PR and repository estimates are visual readings near the August 2026 endpoints of GitHub's published charts.</figcaption>
+            <div class="sr-only"><table><caption>GitHub-reported monthly commits at two points in 2026</caption><thead><tr><th scope="col">Month</th><th scope="col">Monthly commits</th></tr></thead><tbody><tr><th scope="row">April 2026</th><td>1.4 billion</td></tr><tr><th scope="row">August 2026</th><td>2.9 billion</td></tr></tbody></table><table><caption>Approximate visual estimates from the August 2026 endpoints of GitHub's published charts, not directly reported totals</caption><thead><tr><th scope="col">Measure</th><th scope="col">Approximate monthly amount near August 2026</th></tr></thead><tbody><tr><th scope="row">Pull requests merged</th><td>approximately 130 million per month</td></tr><tr><th scope="row">New repositories</th><td>approximately 24 million per month</td></tr></tbody></table></div>
+          </figure>
+          <div class="slide-foot"><span>DATA: <a href="https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/" target="_blank" rel="noopener noreferrer">GITHUB RELIABILITY UPDATE ↗</a></span><span>03 — 20</span></div>
+        </section>
+
+        <section class="slide slide--data slide--actions" id="slide-4" data-slide="4" aria-label="Slide 4 of 20: GitHub Actions annual minutes growth and separate daily job volume" hidden>
+          <div class="slide-top"><span>THE AUTOMATION / 04</span><span>2024 → 2025 / ANNUAL MINUTES</span></div>
+          <div class="slide-head"><span class="eyebrow">GITHUB ACTIONS</span><h2>Automation has<br />its own scale.</h2><p>Public and open-source projects used 11.5B Actions minutes in 2025, up 35% from 2024.</p></div>
+          <div class="actions-layout">
+            <figure class="actions-figure" aria-labelledby="actions-title">
+              <div class="actions-heading"><strong id="actions-title">ACTIONS MINUTES / BILLIONS PER YEAR</strong><span>+35% YoY</span></div>
+              <div class="actions-row"><span>2024<br />CALCULATED</span><div class="actions-track" aria-hidden="true"><i style="width:70.83%"></i></div><b>≈8.5B</b></div>
+              <div class="actions-row"><span>2025<br />REPORTED</span><div class="actions-track" aria-hidden="true"><i style="width:95.83%"></i></div><b>11.5B</b></div>
+              <div class="actions-axis" aria-hidden="true"><span>0</span><span>6B</span><span>12B</span></div>
+              <div class="sr-only"><table><caption>Annual GitHub Actions minutes in public and open-source projects; 2024 is calculated from GitHub's stated 35 percent growth</caption><thead><tr><th scope="col">Year</th><th scope="col">Annual minutes</th><th scope="col">Basis</th></tr></thead><tbody><tr><th scope="row">2024</th><td>approximately 8.5 billion minutes</td><td>Calculated: 11.5 billion divided by 1.35</td></tr><tr><th scope="row">2025</th><td>11.5 billion minutes</td><td>Directly reported, up 35 percent year over year</td></tr></tbody></table></div>
+            </figure>
+            <aside class="actions-daily"><span>PLATFORM-WIDE / DAILY JOBS</span><strong>71M</strong><b>jobs per day</b><p>Reported in GitHub's Actions update. A daily job count, not the annual public/open-source minutes charted here.</p></aside>
+          </div>
+          <p class="actions-reliability">Following the August outage, GitHub pivots its reliability work to focus on adding capacity, improving efficiency, and removing architectural bottlenecks</p>
+          <a class="actions-reliability-link" href="https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/" target="_blank" rel="noopener noreferrer">SOURCE / GITHUB RELIABILITY UPDATE ↗</a>
+          <div class="slide-foot"><span>DATA: <a href="https://github.blog/news-insights/product-news/lets-talk-about-github-actions/" target="_blank" rel="noopener noreferrer">GITHUB ACTIONS UPDATE ↗</a></span><span>04 — 20</span></div>
+        </section>
+
+        <section class="slide" id="slide-5" data-slide="5" aria-label="Slide 5 of 20: Two needs, one platform" hidden>
+          <div class="slide-top"><span>THE TENSION / 05</span><span>CAPABILITY × CONTROL</span></div>
+          <div class="slide-head"><span class="eyebrow">BOTH SIDES ARE RIGHT</span><h2>Two needs.<br />One platform.</h2></div>
+          <div class="tension-layout">
+            <div class="tension-card"><span class="tension-icon">+</span><small>DEVELOPERS WANT</small><h3>More leverage</h3><p>Agents that can investigate, make a start, and carry work across tools.</p><div class="tension-detail">LESS FRICTION / MORE CAPABILITY</div></div>
+            <div class="tension-pivot" aria-hidden="true"><span>AND</span></div>
+            <div class="tension-card tension-card--warm"><span class="tension-icon">✓</span><small>MAINTAINERS NEED</small><h3>More control</h3><p>Clear boundaries for intake, automation, review, and the final call.</p><div class="tension-detail">CLEARER SIGNAL / ACCOUNTABLE DECISIONS</div></div>
+          </div>
+          <div class="slide-foot"><span>THE ANSWER IS NOT TO CHOOSE ONE SIDE</span><span>05 — 20</span></div>
+        </section>
+
+        <section class="slide slide--statement" id="slide-6" data-slide="6" aria-label="Slide 6 of 20: Speed is not the goal" hidden>
+          <div class="slide-top"><span>A PRINCIPLE / 06</span></div>
+          <div class="statement-art" aria-hidden="true"><span class="statement-ring"></span><span class="statement-cross">+</span></div>
+          <div class="statement-copy"><h2>Speed is not<br />the goal.<br /><em>Trustworthy <span class="statement-tail">flow is.</span></em></h2><p>Make the path from intent to decision legible to everyone in it.</p></div>
+          <div class="slide-foot"><span>THE LOOP / NOT JUST THE OUTPUT</span><span>06 — 20</span></div>
+        </section>
+
+        <section class="slide slide--parallel" id="slide-7" data-slide="7" aria-label="Slide 7 of 20: Dimensions of parallelization" hidden>
+          <div class="slide-top"><span>THE CHOICE / 07</span><span>PARALLELISM NEEDS A SHAPE</span></div>
+          <div class="slide-head"><h2>Dimensions of parallelization</h2><p>Decide where work runs, when it starts, and who remains accountable.</p></div>
+          <div class="parallel-dials" aria-label="Three decisions: environment, timing, and ownership"><article><span>01 / WHERE</span><h3>Environment</h3><p>Keep close work local; give independent changes their own workspace.</p></article><article><span>02 / WHEN</span><h3>Timing</h3><p>Work now, on a defined event, or on a deliberate schedule.</p></article><article><span>03 / WHO</span><h3>Ownership</h3><p>Developer, agent, or focused subagents; a person owns the decision.</p></article></div>
+          <div class="slide-foot slide-foot--index-only"><span>07 — 20</span></div>
+        </section>
+
+        <section class="slide slide--surface" id="slide-8" data-slide="8" aria-label="Slide 8 of 20: Choose the surface for the work" hidden>
+          <div class="slide-top"><span>THE SURFACE / 08</span><span>PLACE THE WORK DELIBERATELY</span></div>
+          <div class="slide-head"><h2>Choose the surface for the work.</h2><p>Match the task to the right degree of direct control, coordination, and isolation.</p></div>
+          <div class="surface-route" role="group" aria-label="A range of three ways to run work, from local to coordinated sessions to cloud execution">
+            <article class="surface-stop"><span>DIRECT / 01</span><h3>At the keyboard</h3><strong>VS Code<br />Copilot CLI</strong><p>Keep a focused edit and its checks close to your local workspace.</p></article>
+            <article class="surface-stop surface-stop--middle"><span>COORDINATE / 02</span><h3>Across sessions</h3><strong>Copilot app<br />agent sessions</strong><p>Follow parallel lanes; bring their results together for review.</p></article>
+            <article class="surface-stop"><span>DELEGATE / 03</span><h3>Beyond the laptop</h3><strong>Cloud agents<br />tasks</strong><p>Use isolated cloud execution for bounded work when it fits.</p></article>
+          </div>
+          <div class="surface-axis" aria-hidden="true"><span>LOCAL / DIRECT CONTROL</span><span>COORDINATED PARALLEL WORK</span><span>ISOLATED CLOUD EXECUTION</span></div>
+          <div class="slide-foot slide-foot--index-only"><span>08 — 20</span></div>
+        </section>
+
+        <section class="slide slide--ide" id="slide-9" data-slide="9" aria-label="Slide 9 of 20: IDEs: VS Code" hidden>
+          <div class="slide-top"><span>THE EDITOR / 09</span><span>WORK BESIDE THE AGENT</span></div>
+          <div class="slide-head"><h2>IDEs: VS Code</h2><p>Start with project context. Inspect the agent's work before it becomes yours.</p></div>
+          <div class="ide-workflow" role="group" aria-label="IDE workflow: task and repository context, agent edits in VS Code, diff and test evidence, then a human decision">
+            <div class="ide-brief"><span>01 / TASK CONTEXT</span><h3>Set the boundary.</h3><p>Give the goal, repository guidance, and a checkable finish line.</p><b>HUMAN INPUT</b></div>
+            <div class="ide-workbench">
+              <div class="ide-workbench-top"><span>02 / AGENT EDITS</span><span>VS CODE WORKSPACE</span></div>
+              <div class="ide-workbench-body"><div><span>TARGET FILE</span><strong>setup.md</strong></div><div><span>PROPOSAL</span><strong>A focused change</strong></div></div>
+              <p>Stay in the editor while the agent explores and proposes edits.</p>
+            </div>
+            <div class="ide-proof"><span>03 / EVIDENCE</span><h3>Read the result.</h3><div class="ide-proof-lines" aria-hidden="true"><div>− unclear step</div><div>+ checkable step</div></div><p>Diff + test outcome; note what remains uncertain.</p></div>
+            <div class="ide-decision"><span>04 / HUMAN REVIEW</span><strong>Keep, revise, or reject.</strong><small>THE DECISION STAYS WITH YOU</small></div>
+          </div>
+          <div class="slide-foot slide-foot--index-only"><span>09 — 20</span></div>
+        </section>
+
+        <section class="slide slide--cli" id="slide-10" data-slide="10" aria-label="Slide 10 of 20: GitHub Copilot CLI" hidden>
+          <div class="slide-top"><span>THE TERMINAL / 10</span><span>WORK FROM THE REPOSITORY</span></div>
+          <div class="slide-head"><h2>GitHub Copilot CLI</h2><p>Direct a bounded task at the terminal, then check what actually changed.</p></div>
+          <div class="cli-workflow" role="group" aria-label="Terminal-first workflow: inspect repository context, direct one bounded task, verify commands tests and diff, then review and decide">
+            <div class="cli-console">
+              <div class="cli-console-top"><span>TERMINAL / LOCAL WORKSPACE</span><span>HUMAN + AGENT</span></div>
+              <div class="cli-console-row"><span>01 / INSPECT</span><div><strong>Find the context.</strong><p>Read the files and repository instructions.</p></div></div>
+              <div class="cli-console-row"><span>02 / DIRECT</span><div><strong>Name one change.</strong><p>Set scope and a checkable result.</p></div></div>
+              <div class="cli-console-row"><span>03 / VERIFY</span><div><strong>Check the work.</strong><p>Run focused commands or tests; inspect the diff.</p></div></div>
+            </div>
+            <div class="cli-handoff">
+              <div class="cli-receipt"><span>EVIDENCE TO CARRY FORWARD</span><h3>What can you show?</h3><div><b>CHANGES</b><small>Files and diff</small></div><div><b>CHECKS</b><small>Commands and outcomes</small></div><div><b>GAPS</b><small>What remains uncertain</small></div></div>
+              <div class="cli-decision"><span>04 / HUMAN REVIEW</span><strong>Make the call.</strong><p>Keep or revise after reading the evidence.</p></div>
+            </div>
+          </div>
+          <div class="slide-foot slide-foot--index-only"><span>10 — 20</span></div>
+        </section>
+
+        <section class="slide slide--coordination" id="slide-11" data-slide="11" aria-label="Slide 11 of 20: Parallel work creates a coordination bottleneck" hidden>
+          <div class="slide-top"><span>THE PRESSURE / 11</span></div>
+          <div class="slide-head"><h2>Parallel work<br />needs coordination.</h2></div>
+          <div class="convergence" role="group" aria-label="Three features converge on a shared workspace; context, working state, local processes, and human attention become a coordination bottleneck">
+            <div class="convergence-inputs">
+              <div class="convergence-input"><strong>Feature A</strong></div>
+              <div class="convergence-input"><strong>Feature B</strong></div>
+              <div class="convergence-input"><strong>Feature C</strong></div>
+            </div>
+            <div class="convergence-arrows" aria-hidden="true"><span>→</span><span>→</span><span>→</span></div>
+            <div class="convergence-board">
+              <span>SHARED WORKSPACE</span>
+              <div class="convergence-load"><span>CONTEXT</span><span>STATE</span><span>PROCESSES</span><span>ATTENTION</span></div>
+            </div>
+          </div>
+          <div class="convergence-outcome"><strong>COORDINATION BOTTLENECK</strong></div>
+          <div class="slide-foot slide-foot--index-only"><span>11 — 20</span></div>
+        </section>
+
+        <section class="slide slide--app" id="slide-12" data-slide="12" aria-label="Slide 12 of 20: Agent-native developer tools in the GitHub Copilot app" hidden>
+          <div class="slide-top"><span>THE WORKSPACE / 12</span><span>HUMANS STAY IN THE LOOP</span></div>
+          <div class="app-layout">
+            <div class="app-copy">
+              <span class="app-name">GITHUB COPILOT APP</span>
+              <h2>Agent-native<br /> developer tools</h2>
+              <p>Coordinate parallel agent work. See where attention is needed; keep the review and decision with a person.</p>
+              <a class="app-link" href="https://gh.io/app" target="_blank" rel="noopener noreferrer" aria-label="Explore the GitHub Copilot app at gh.io/app (opens in a new tab)">gh.io/app <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="app-map" role="group" aria-label="Conceptual view: three feature workstreams converge on one human review decision">
+              <div class="app-map-heading">PARALLEL WORK / SHARED VIEW</div>
+              <div class="app-map-lanes">
+                <div><span>Feature A</span><strong>Add search functionality</strong></div>
+                <div><span>Feature B</span><strong>Migrate the database to PostgreSQL</strong></div>
+                <div><span>Feature C</span><strong>Fix checkout validation</strong></div>
+              </div>
+              <div class="app-map-join" aria-hidden="true">↓</div>
+              <div class="app-map-decision"><span>HUMAN REVIEW</span><strong>Decide what moves forward.</strong></div>
+            </div>
+          </div>
+          <div class="slide-foot slide-foot--index-only"><span>12 — 20</span></div>
+        </section>
+
+        <section class="slide" id="slide-13" data-slide="13" aria-label="Slide 13 of 20: A shared contract for work" hidden>
+          <div class="slide-top"><span>THE MODEL / 13</span><span>INTENT → EVIDENCE → DECISION</span></div>
+          <div class="slide-head"><span class="eyebrow">A SHARED CONTRACT</span><h2>Give the work<br />a visible path.</h2><p>Parallel lanes meet again when issues frame the work and PRs carry its evidence.</p></div>
+          <div class="pathway" aria-label="Issue captures intent; agent proposes work; pull request presents evidence; maintainer decides">
+            <div class="path-step"><span>01 / FRAME</span><strong>Issue</strong><p>What needs to change and why?</p><small>HUMAN-DEFINED INTENT</small></div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-step"><span>02 / EXPLORE</span><strong>Agent</strong><p>What approach might work?</p><small>BOUNDED EXECUTION</small></div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-step"><span>03 / SHOW</span><strong>Pull request</strong><p>What changed, and what supports it?</p><small>REVIEWABLE EVIDENCE</small></div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-step"><span>04 / GOVERN</span><strong>Maintainer</strong><p>Is this ready to merge?</p><small>HUMAN DECISION</small></div>
+          </div>
+          <div class="path-note">The agent contributes to the process. It does not replace the process.</div>
+          <div class="slide-foot slide-foot--index-only"><span>13 — 20</span></div>
+        </section>
+
+        <section class="slide" id="slide-14" data-slide="14" aria-label="Slide 14 of 20: Put the handoff in the PR" hidden>
+          <div class="slide-top"><span>THE REVIEW SURFACE / 14</span><span>THE DIFF NEEDS A STORY</span></div>
+          <div class="slide-head"><span class="eyebrow">PULL REQUESTS</span><h2>Put the handoff<br />in the PR.</h2><p>The PR is where generated work becomes reviewable work.</p></div>
+          <div class="pr-layout">
+            <div class="pr-frame"><div class="pr-frame-top"><span>PROPOSED CHANGE</span><span class="pr-state">READY FOR REVIEW</span></div><h3>Make first-run setup reproducible</h3><div class="pr-diff"><div><span>−</span> Unclear prerequisite</div><div><span>+</span> Explicit environment check</div><div><span>+</span> Verified preview step</div></div><div class="pr-frame-bottom"><span>AUTHOR: AGENT-ASSISTED</span><span>DECISION: MAINTAINER</span></div></div>
+            <div class="review-list"><div><span>01</span><strong>Scope</strong><small>Does the change match the issue?</small></div><div><span>02</span><strong>Evidence</strong><small>Do the checks support the claim?</small></div><div><span>03</span><strong>Judgment</strong><small>Are the tradeoffs acceptable?</small></div></div>
+          </div>
+          <div class="slide-foot slide-foot--index-only"><span>14 — 20</span></div>
+        </section>
+
+        <section class="slide slide--video" id="slide-15" data-slide="15" aria-label="Slide 15 of 20: Captioned GitHub CLI attachment walkthrough" hidden>
+          <video class="demo-video" controls preload="metadata" playsinline aria-label="Captioned walkthrough showing GitHub CLI attaching an image to a GitHub issue">
+            <source src="./assets/media/cli-attach-captions.mp4" type="video/mp4" />
+            <p>Your browser cannot play this video. <a href="./assets/media/cli-attach-captions.mp4">Open the captioned MP4</a>.</p>
+          </video>
+        </section>
+
+        <section class="slide slide--video" id="slide-16" data-slide="16" aria-label="Slide 16 of 20: Agent workflow video demonstration" hidden>
+          <video class="demo-video" controls preload="metadata" playsinline aria-label="Video demonstration of a GitHub pull request and agent-assisted development in the Copilot app">
+            <source src="./assets/media/demo-walkthrough.mp4" type="video/mp4" />
+            <p>Your browser cannot play this video. <a href="./assets/media/demo-walkthrough.mp4">Open the demo MP4</a>.</p>
+          </video>
+        </section>
+
+        <section class="slide slide--video" id="slide-17" data-slide="17" aria-label="Slide 17 of 20: GitHub Copilot in Microsoft Teams demonstration" hidden>
+          <video class="demo-video" controls preload="metadata" playsinline aria-label="GitHub Copilot in Microsoft Teams video showing an agent investigating a reported mobile error">
+            <source src="./assets/media/copilot-in-teams.mp4" type="video/mp4" />
+            <p>Your browser cannot play this video. <a href="./assets/media/copilot-in-teams.mp4">Open the Teams demo MP4</a>.</p>
+          </video>
+        </section>
+
+        <section class="slide slide--evidence slide--evidence-report" id="slide-18" data-slide="18" aria-label="Slide 18 of 20: Teams report of an issue-automation exception" hidden>
+          <div class="slide-head"><h2>A report enters triage.</h2></div>
+          <figure class="evidence-figure">
+            <div class="evidence-image-window" data-deck-scroll role="group" tabindex="0" aria-label="Teams report screenshot. Scroll horizontally on a narrow screen to read it.">
+              <img src="./assets/media/teams-report.png" width="2000" height="1139" loading="lazy" alt="Teams message reporting an unexpected duplicate issue closure and asking for triage." />
+            </div>
+            <figcaption>SWIPE IMAGE TO READ</figcaption>
+          </figure>
+          <div class="slide-foot slide-foot--index-only"><span>18 — 20</span></div>
+        </section>
+
+        <section class="slide slide--evidence" id="slide-19" data-slide="19" aria-label="Slide 19 of 20: Slack agent confirmation and GitHub issue" hidden>
+          <div class="slide-top"><span>FOLLOW THE HANDOFF / 19</span></div>
+          <div class="slide-head"><h2>The report gets a record.</h2><p>Issue details on GitHub. Confirmation back in Slack.</p></div>
+          <div class="evidence-pair">
+            <figure class="evidence-figure">
+              <div class="evidence-image-window" data-deck-scroll role="group" tabindex="0" aria-label="Slack confirmation screenshot. Scroll horizontally on a narrow screen to read it.">
+                <img src="./assets/media/teams-issue-confirmation.png" width="1454" height="1558" loading="lazy" alt="Slack thread where a teammate asks GitHub to file an issue and the agent confirms it has filed one." />
+              </div>
+              <figcaption>SWIPE IMAGE TO READ</figcaption>
+            </figure>
+            <figure class="evidence-figure">
+              <div class="evidence-image-window" data-deck-scroll role="group" tabindex="0" aria-label="GitHub issue screenshot. Scroll horizontally on a narrow screen to read it.">
+                <img src="./assets/media/github-issue.png" width="2000" height="1429" loading="lazy" alt="GitHub issue opened by an agent, summarizing a duplicate-closure fallback and listing reproduction steps." />
+              </div>
+              <figcaption>SWIPE IMAGE TO READ</figcaption>
+            </figure>
+          </div>
+          <div class="slide-foot slide-foot--index-only"><span>19 — 20</span></div>
+        </section>
+
+        <section class="slide slide--closing" id="slide-20" data-slide="20" aria-label="Slide 20 of 20: Build the loop you can trust" hidden>
+          <div class="slide-top"><span>THE TAKEAWAY / 20</span><span>BUILD TOGETHER / DECIDE TOGETHER</span></div>
+          <div class="closing-layout">
+            <div class="closing-copy">
+              <span class="tag tag--green">THE HUMAN + AGENT FUTURE</span>
+              <h2>Build the loop<br />you can <em>trust.</em></h2>
+              <p>People set intent. Agents work in isolated lanes. Maintainers decide with evidence.</p>
+              <div class="closing-signoff"><strong>Julia Muiruri</strong><span>Developer Experiences (DX) at GitHub</span></div>
+              <nav class="closing-socials" aria-label="Julia Muiruri's social profiles">
+                <a href="https://x.com/juliamuiruri4" target="_blank" rel="noopener noreferrer" aria-label="X: @juliamuiruri4 (opens in a new tab)">
+                  <img class="social-mark social-mark--light" src="./assets/brands/x/logo-black.png" alt="" aria-hidden="true" />
+                  <img class="social-mark social-mark--dark" src="./assets/brands/x/logo-white.png" alt="" aria-hidden="true" />
+                  <span><b>X</b> @juliamuiruri4</span>
+                </a>
+                <a href="https://github.com/juliamuiruri4" target="_blank" rel="noopener noreferrer" aria-label="GitHub: juliamuiruri4 (opens in a new tab)">
+                  <img class="social-mark social-mark--light" src="./assets/brands/github/GitHub_Invertocat_Black_Clearspace.svg" alt="" aria-hidden="true" />
+                  <img class="social-mark social-mark--dark" src="./assets/brands/github/GitHub_Invertocat_White_Clearspace.svg" alt="" aria-hidden="true" />
+                  <span><b>GitHub</b> juliamuiruri4</span>
+                </a>
+                <a href="https://www.linkedin.com/in/juliamuiruri" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: juliamuiruri (opens in a new tab)">
+                  <img class="social-mark social-mark--light" src="./assets/brands/linkedin/LI-In-Bug.png" alt="" aria-hidden="true" />
+                  <img class="social-mark social-mark--dark" src="./assets/brands/linkedin/InBug-White.png" alt="" aria-hidden="true" />
+                  <span><b>LinkedIn</b> juliamuiruri</span>
+                </a>
+                <a href="https://www.youtube.com/@juliamuiruri" target="_blank" rel="noopener noreferrer" aria-label="YouTube: @juliamuiruri (opens in a new tab)">
+                  <img class="social-mark social-mark--light" src="./assets/brands/youtube/yt_icon_red_digital.png" alt="" aria-hidden="true" />
+                  <img class="social-mark social-mark--dark" src="./assets/brands/youtube/yt_icon_white_digital.png" alt="" aria-hidden="true" />
+                  <span><b>YouTube</b> @juliamuiruri</span>
+                </a>
+              </nav>
+            </div>
+            <div class="closing-orbit" aria-label="Three connected principles: intent, evidence, decision"><div>INTENT</div><div>EVIDENCE</div><div>DECISION</div><span>↗</span></div>
+          </div>
+          <div class="slide-foot"><span>THANK YOU</span><span>20 — 20</span></div>
+        </section>
+      </main>
+
+      <footer class="controls" aria-label="Presentation controls">
+        <button type="button" id="previous" class="nav-button" aria-label="Previous slide">← <span>PREVIOUS</span></button>
+        <div class="progress" role="group" aria-label="Slide progress">
+          <span id="slide-counter" class="counter">01 / 20</span>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="Presentation progress" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"><div id="progress-fill"></div></div>
+          <span class="hint">← → TO NAVIGATE</span>
+        </div>
+        <button type="button" id="next" class="nav-button"><span>NEXT</span> →</button>
+      </footer>
+      <p id="slide-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </div>
+
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-header"><h2 id="help-title">Navigate the deck</h2><button type="button" id="close-help" aria-label="Close help">×</button></div>
+      <p>Use the controls below the slide, click the left or right half of a slide, or swipe on a touch screen. On slide 1, four advances reveal highlights before the next slide; Previous reverses them.</p>
+      <dl><div><dt>← / →</dt><dd>Previous / next</dd></div><div><dt>Space / Page Down</dt><dd>Next</dd></div><div><dt>Page Up</dt><dd>Previous</dd></div><div><dt>Home / End</dt><dd>First / last</dd></div><div><dt>Esc</dt><dd>Close this help</dd></div></dl>
+      <p class="dialog-note">A slide can be linked directly with <code>#slide-10</code>.</p>
+    </dialog>
+  </body>
+</html>
